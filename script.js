@@ -73,7 +73,7 @@
         clear();
         for (let i = 0; i < clickEvents.length; i++) {
             clickEvents[i].radius += speed;
-            if (clickEvents[i].radius > 2000) {
+            if (clickEvents[i].radius > width) {
                 clickEvents.splice(i, 1);
                 continue;
             }
@@ -92,8 +92,8 @@
                     y: arc.y - clickEvent.y
                 }
                 let length = Math.sqrt(Math.pow(vec.x, 2) + Math.pow(vec.y, 2));
-                arc.setVec(vec.x / length, vec.y / length);
                 if (length < clickEvent.radius) {
+                    arc.setVec(vec.x / length, vec.y / length);
                     arc.setScale((length / clickEvent.radius) * scale + 1);
                     arc.setForce((length / clickEvent.radius) * scale * force);
                 }
@@ -115,13 +115,13 @@
         arcs.push(new Arc(
             Math.floor(Math.random() * width),
             Math.floor(Math.random() * height),
-            Math.floor(Math.random() * 2 + 1),
+            Math.random() * 2 + 1,
             Math.random(),
             Math.random(),
             {
-                r: Math.floor(Math.random() * 255),
-                g: Math.floor(Math.random() * 255),
-                b: Math.floor(Math.random() * 255)
+                r: Math.random() * 255,
+                g: Math.random() * 255,
+                b: Math.random() * 255
             }
         ));
         i++;
